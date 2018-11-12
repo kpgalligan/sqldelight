@@ -11,6 +11,7 @@ kotlin {
   sourceSets {
     commonMain {
       dependencies {
+        implementation "co.touchlab.stately:stately:0.3.4-k1.3.0-a1"
         implementation deps.kotlin.stdlib.common
       }
     }
@@ -20,7 +21,7 @@ kotlin {
         implementation deps.kotlin.test.commonAnnotations
       }
     }
-    jvmMain {
+    /*jvmMain {
       dependencies {
         implementation deps.kotlin.stdlib.jdk
       }
@@ -28,7 +29,7 @@ kotlin {
     jvmTest {
       dependencies {
         implementation deps.kotlin.test.junit
-        implementation project(':drivers:sqlite-driver')
+//        implementation project(':drivers:sqlite-driver')
       }
     }
     jsMain {
@@ -40,7 +41,7 @@ kotlin {
       dependencies {
         implementation deps.kotlin.test.js
       }
-    }
+    }*/
     nativeMain {
     }
     nativeTest {
@@ -48,13 +49,15 @@ kotlin {
   }
 
   targets {
-    fromPreset(presets.jvm, 'jvm')
-    fromPreset(presets.js, 'js')
+//    fromPreset(presets.jvm, 'jvm')
+//    fromPreset(presets.js, 'js')
     fromPreset(presets.iosX64, 'iosX64')
     fromPreset(presets.iosArm64, 'iosArm64')
+    fromPreset(presets.macosX64, 'macos')
+    fromPreset(presets.iosArm32, 'iosArm32')
   }
 
-  configure([targets.iosX64, targets.iosArm64]) {
+  configure([targets.iosX64, targets.iosArm64, targets.iosArm32, targets.macos]) {
     compilations.main.source(sourceSets.nativeMain)
     compilations.test.source(sourceSets.nativeTest)
   }
@@ -93,10 +96,13 @@ task emptyJavadocJar(type: Jar) {
   classifier = 'javadoc'
 }
 
-signing {
-  required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
-  sign(publishing.publications)
-}
+//apply from: '../gradle/configpublish.gradle'
+
+//signing {
+//  required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
+//  sign(publishing.publications)
+//}
+
 
 publishing {
   publications.all {
@@ -145,12 +151,15 @@ publishing {
 
   repositories {
     maven {
+      url (project.hasProperty('j2objcMavenDeploy') ? project.property('j2objcMavenDeploy') : 'file://nope/')
+    }
+    /*maven {
       url isReleaseBuild() ? getReleaseRepositoryUrl() : getSnapshotRepositoryUrl()
       credentials {
         username getRepositoryUsername()
         password getRepositoryPassword()
       }
-    }
+    }*/
     maven {
       name 'test'
       url "file://${rootProject.buildDir}/localMaven"
@@ -161,11 +170,11 @@ publishing {
 afterEvaluate {
   // Alias the task names we use elsewhere to the new task names.
   tasks.create('install').dependsOn('publishKotlinMultiplatformPublicationToMavenLocal')
-  tasks.create('installLocally') {
-    dependsOn 'publishKotlinMultiplatformPublicationToTestRepository'
-    dependsOn 'publishJvmPublicationToTestRepository'
-    dependsOn 'publishJsPublicationToTestRepository'
-  }
+//  tasks.create('installLocally') {
+//    dependsOn 'publishKotlinMultiplatformPublicationToTestRepository'
+//    dependsOn 'publishJvmPublicationToTestRepository'
+//    dependsOn 'publishJsPublicationToTestRepository'
+//  }
   // NOTE: We do not alias uploadArchives because CI runs it on Linux and we only want to run it on Mac OS.
   //tasks.create('uploadArchives').dependsOn('publishKotlinMultiplatformPublicationToMavenRepository')
 }

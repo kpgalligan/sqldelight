@@ -21,7 +21,7 @@ configurations {
 // Append any extra dependencies to the test fixtures via a custom configuration classpath. This
 // allows us to apply additional plugins in a fixture while still leveraging dependency resolution
 // and de-duplication semantics.
-tasks.getByName('pluginUnderTestMetadata').getPluginClasspath().from(configurations.fixtureClasspath)
+//tasks.getByName('pluginUnderTestMetadata').getPluginClasspath().from(configurations.fixtureClasspath)
 
 dependencies {
   implementation project(':sqldelight-compiler')
@@ -47,10 +47,10 @@ dependencies {
 }
 
 // The integration tests require local installations of some of the runtimes.
-tasks.getByName("test").dependsOn(
-    ":sqldelight-runtime:installLocally",
-    ":drivers:android-driver:installLocally",
-    ":drivers:sqlite-driver:installLocally")
+//tasks.getByName("test").dependsOn(
+//    ":sqldelight-runtime:installLocally",
+//    ":drivers:android-driver:installLocally",
+//    ":drivers:sqlite-driver:installLocally")
 
 jar {
   from configurations.bundled.collect {
