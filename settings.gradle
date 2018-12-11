@@ -5,7 +5,7 @@ include ':drivers:ios-driver'
 include ':drivers:sqlite-driver'
 include ':drivers:driver-test'
 include ':extensions:rxjava2-extensions'
-include ':sample'
+//include ':sample'
 include ':sqldelight-compiler'
 include ':sqldelight-compiler:integration-tests'
 include ':sqldelight-gradle-plugin'
@@ -15,4 +15,4 @@ include ':sqlite-migrations'
 include ':test-util'
 
 enableFeaturePreview('GRADLE_METADATA')
-enableFeaturePreview('STABLE_PUBLISHING')
+//enableFeaturePreview('STABLE_PUBLISHING')

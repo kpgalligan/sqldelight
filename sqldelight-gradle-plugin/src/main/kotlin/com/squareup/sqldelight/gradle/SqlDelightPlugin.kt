@@ -108,7 +108,7 @@ open class SqlDelightPlugin : Plugin<Project> {
       val sourceSets = project.extensions.getByType(KotlinMultiplatformExtension::class.java).sourceSets
       val sourceSet = (sourceSets.getByName("commonMain") as DefaultKotlinSourceSet)
       project.configurations.getByName(sourceSet.apiConfigurationName).dependencies.add(
-          project.dependencies.create("com.squareup.sqldelight:runtime:$VERSION")
+          project.dependencies.create("co.touchlab.com.squareup.sqldelight:runtime:$VERSION")
       )
       sourceSet.kotlin
     } else {
@@ -135,7 +135,7 @@ open class SqlDelightPlugin : Plugin<Project> {
         properties.toFile(File(propsDir, SqlDelightPropertiesFile.NAME))
       }
 
-      val task = project.tasks.register("generateSqlDelightInterface", SqlDelightTask::class.java) {
+      val task = project.tasks.create("generateSqlDelightInterface", SqlDelightTask::class.java) {
         it.packageName = packageName
         it.sourceFolders = sourceSet.files
         it.outputDirectory = outputDirectory
@@ -153,22 +153,22 @@ open class SqlDelightPlugin : Plugin<Project> {
               // Honestly the way native compiles kotlin seems completely arbitrary and some order
               // of the following tasks, so just set the dependency for all of them and let gradle
               // figure it out.
-              project.tasks.named(compilationUnit.compileAllTaskName).configure { it.dependsOn(task) }
-              project.tasks.named(compilationUnit.compileKotlinTaskName).configure { it.dependsOn(task) }
-              project.tasks.named(compilationUnit.linkAllTaskName).configure { it.dependsOn(task) }
+              project.tasks.getByName(compilationUnit.compileAllTaskName).dependsOn(task)
+              project.tasks.getByName(compilationUnit.compileKotlinTaskName).dependsOn(task)
+              project.tasks.getByName(compilationUnit.linkAllTaskName).dependsOn(task)
               NativeOutputKind.values().forEach { kind ->
                 NativeBuildType.values().forEach { buildType ->
                   compilationUnit.findLinkTask(kind, buildType)?.dependsOn(task)
                 }
               }
             } else {
-              project.tasks.named(compilationUnit.compileKotlinTaskName)
-                  .configure { it.dependsOn(task) }
+              project.tasks.getByName(compilationUnit.compileKotlinTaskName)
+                  .dependsOn(task)
             }
           }
         }
       } else {
-        project.tasks.named("compileKotlin").configure{ it.dependsOn(task) }
+        project.tasks.getByName("compileKotlin").dependsOn(task)
       }
 
       addMigrationTasks(project, sourceSet.files, extension.schemaOutputDirectory)
@@ -178,7 +178,7 @@ open class SqlDelightPlugin : Plugin<Project> {
   private fun configureAndroid(project: Project, extension: SqlDelightExtension,
       variants: DomainObjectSet<out BaseVariant>) {
     val apiDeps = project.configurations.getByName("api").dependencies
-    apiDeps.add(project.dependencies.create("com.squareup.sqldelight:android-driver:$VERSION"))
+    apiDeps.add(project.dependencies.create("co.touchlab.com.squareup.sqldelight:android-driver:$VERSION"))
 
     var packageName: String? = null
     val sourceSets = mutableListOf<List<String>>()
@@ -186,7 +186,7 @@ open class SqlDelightPlugin : Plugin<Project> {
 
     variants.all {
       val taskName = "generate${it.name.capitalize()}SqlDelightInterface"
-      val taskProvider = project.tasks.register(taskName, SqlDelightTask::class.java) { task ->
+      val taskProvider = project.tasks.create(taskName, SqlDelightTask::class.java) { task ->
         task.group = "sqldelight"
         task.outputDirectory = buildDirectory
         task.description = "Generate Android interfaces for working with ${it.name} database tables"
@@ -199,7 +199,7 @@ open class SqlDelightPlugin : Plugin<Project> {
         packageName = task.packageName
       }
       // TODO Use task configuration avoidance once released. https://issuetracker.google.com/issues/117343589
-      it.registerJavaGeneratingTask(taskProvider.get(), taskProvider.get().outputDirectory)
+      it.registerJavaGeneratingTask(taskProvider, taskProvider.outputDirectory)
     }
 
     project.afterEvaluate {
@@ -253,7 +253,7 @@ open class SqlDelightPlugin : Plugin<Project> {
     sourceSet: Collection<File>,
     schemaOutputDirectory: File?
   ) {
-    val verifyMigrationTask = project.tasks.register("verifySqlDelightMigration", VerifyMigrationTask::class.java) {
+    val verifyMigrationTask = project.tasks.create("verifySqlDelightMigration", VerifyMigrationTask::class.java) {
       it.sourceFolders = sourceSet
       it.source(sourceSet)
       it.include("**${File.separatorChar}*.${SqlDelightFileType.defaultExtension}")
@@ -263,7 +263,7 @@ open class SqlDelightPlugin : Plugin<Project> {
     }
 
     if (schemaOutputDirectory != null) {
-      project.tasks.register("generateSqlDelightSchema", GenerateSchemaTask::class.java) {
+      project.tasks.create("generateSqlDelightSchema", GenerateSchemaTask::class.java) {
         it.sourceFolders = sourceSet
         it.outputDirectory = schemaOutputDirectory
         it.source(sourceSet)
@@ -274,9 +274,7 @@ open class SqlDelightPlugin : Plugin<Project> {
       }
     }
 
-    project.tasks.named("check").configure {
-      it.dependsOn(verifyMigrationTask)
-    }
+    project.tasks.getByName("check").dependsOn(verifyMigrationTask)
   }
 
   // Copied from kotlin plugin

@@ -9,9 +9,9 @@ ext.versions = [
     schemaCrawler: '14.16.04.01-java7',
     sqldelight: '1.0.0-alpha4',
     moshi: '1.8.0',
-    stately: '0.5.1',
-    sqliter: '0.5.6',
-    testhelp: '0.1.0',
+    stately: '0.5.1-M0.3-SNAPSHOT',
+    sqliter: '0.5.7-M0.3-SNAPSHOT',
+    testhelp: '0.1.1-M0.3-SNAPSHOT',
 ]
 
 ext.deps = [
