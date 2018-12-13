@@ -38,7 +38,7 @@ open class SqlDelightTask : SourceTask() {
 
   @TaskAction
   fun generateSqlDelightFiles() {
-    outputDirectory?.deleteRecursively()
+//    outputDirectory?.deleteRecursively()
     val environment = SqlDelightEnvironment(
         sourceFolders = sourceFolders.filter { it.exists() },
         packageName = packageName,

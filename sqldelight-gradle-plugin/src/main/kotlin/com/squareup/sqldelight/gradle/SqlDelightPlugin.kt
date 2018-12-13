@@ -117,7 +117,7 @@ open class SqlDelightPlugin : Plugin<Project> {
     }
     kotlinSrcs.srcDirs(outputDirectory.toRelativeString(project.projectDir))
 
-    project.afterEvaluate { project ->
+//    project.afterEvaluate {
       val packageName = requireNotNull(extension.packageName) { "property packageName must be provided" }
       val sourceSet = extension.sourceSet ?: project.files("src/main/sqldelight")
 
@@ -155,10 +155,14 @@ open class SqlDelightPlugin : Plugin<Project> {
               // figure it out.
               project.tasks.getByName(compilationUnit.compileAllTaskName).dependsOn(task)
               project.tasks.getByName(compilationUnit.compileKotlinTaskName).dependsOn(task)
-              project.tasks.getByName(compilationUnit.linkAllTaskName).dependsOn(task)
+//              project.tasks.getByName(compilationUnit.linkAllTaskName).dependsOn(task)
               NativeOutputKind.values().forEach { kind ->
                 NativeBuildType.values().forEach { buildType ->
-                  compilationUnit.findLinkTask(kind, buildType)?.dependsOn(task)
+                  try {
+                    compilationUnit.findLinkTask(kind, buildType)?.dependsOn(task)
+                  } catch (e: Exception) {
+                    e.printStackTrace()
+                  }
                 }
               }
             } else {
@@ -172,7 +176,7 @@ open class SqlDelightPlugin : Plugin<Project> {
       }
 
       addMigrationTasks(project, sourceSet.files, extension.schemaOutputDirectory)
-    }
+//    }
   }
 
   private fun configureAndroid(project: Project, extension: SqlDelightExtension,
