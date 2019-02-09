@@ -21,6 +21,7 @@ buildscript {
 
     // Used for the sample
     classpath "com.squareup.sqldelight:gradle-plugin:${versions.sqldelight}"
+    classpath "co.touchlab:kotlinxcodesync:${versions.xcodesync}"
   }
 }
 

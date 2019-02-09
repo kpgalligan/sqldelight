@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CEB9527481BDD1B331D26DF /* SchemaTest.kt in Sources */ = {isa = PBXBuildFile; fileRef = 8870FF3D526ACC198706A64B /* SchemaTest.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		0D56920D09643FB712D48596 /* DateFormatHelper.kt in Sources */ = {isa = PBXBuildFile; fileRef = 59299AB6E5FD98C483DAB8F0 /* DateFormatHelper.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		18D6B59125B98B89D1176973 /* Db.kt in Sources */ = {isa = PBXBuildFile; fileRef = 938E3C26BCDA770AFC45C77E /* Db.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		2869EF7651D5B2152E653826 /* Date.kt in Sources */ = {isa = PBXBuildFile; fileRef = 2D0BA21E98A7ED1058F1F651 /* Date.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		399F692A98931BC916334BF4 /* DateFormatHelper.kt in Sources */ = {isa = PBXBuildFile; fileRef = 622A36BA193416C6413A1025 /* DateFormatHelper.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		53A4BC3FBFCB9EA843F34A30 /* TeamCell.kt in Sources */ = {isa = PBXBuildFile; fileRef = 99FFC5352F52EEEB5D95F94F /* TeamCell.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
 		631A1BEE21F25EEE007EE0A7 /* PlayerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631A1BED21F25EEE007EE0A7 /* PlayerRow.swift */; };
 		631A1BF021F274F8007EE0A7 /* TeamRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631A1BEF21F274F8007EE0A7 /* TeamRow.swift */; };
 		631A1BF221F2758F007EE0A7 /* TeamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631A1BF121F2758F007EE0A7 /* TeamsViewController.swift */; };
@@ -17,6 +23,20 @@
 		635661DF21F12B8000DD7240 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 635661DD21F12B8000DD7240 /* LaunchScreen.storyboard */; };
 		63E90CF621FEBBB700449E04 /* main.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E90CF521FEBBB700449E04 /* main.framework */; };
 		63E90CF721FEBBB700449E04 /* main.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63E90CF521FEBBB700449E04 /* main.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6908E9BF7CD2E3668BAFE108 /* TeamDataTest.kt in Sources */ = {isa = PBXBuildFile; fileRef = BF3E0A657E5A7AA2D5160E8F /* TeamDataTest.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		831266C720CE28999E562840 /* PlayerData.kt in Sources */ = {isa = PBXBuildFile; fileRef = 5DCB6FE37C44A410A92EE05E /* PlayerData.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		9D7A25C6DAAC6D0DCF1950B1 /* Date.kt in Sources */ = {isa = PBXBuildFile; fileRef = 2C3819D199C0FC4BA31FAE2D /* Date.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		A42FC9307BE595BF5F0CB59C /* TeamData.kt in Sources */ = {isa = PBXBuildFile; fileRef = D367694199984226C5D028FF /* TeamData.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		A7814333C7F9172554A282F3 /* DateFormatHelper.kt in Sources */ = {isa = PBXBuildFile; fileRef = BCC0FA6E28AE76F5EB14DE33 /* DateFormatHelper.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		A80900DE2CEF0C0E431408FE /* Functions.kt in Sources */ = {isa = PBXBuildFile; fileRef = 477E326934E3D6F71A36B711 /* Functions.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		A85D4398384118ACB0557930 /* Functions.kt in Sources */ = {isa = PBXBuildFile; fileRef = FD1FCDF819714506374E4DFC /* Functions.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		A9212FA144ED8140713324C2 /* Db.kt in Sources */ = {isa = PBXBuildFile; fileRef = EA8EABACE1448C8813022F7D /* Db.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		BCF72DFE489A54E4C71D1791 /* DateFormatHelperTest.kt in Sources */ = {isa = PBXBuildFile; fileRef = D7F0BC28402B8682DC40D272 /* DateFormatHelperTest.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		BD738EEDB2556BD1A6729A0F /* Date.kt in Sources */ = {isa = PBXBuildFile; fileRef = 8A7E57FEC2057B55C5FD09BF /* Date.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		C3AFCDF0EB7C2C03BFDA4765 /* Player.kt in Sources */ = {isa = PBXBuildFile; fileRef = 1214A5B3EA99C9B4EDBCAF3A /* Player.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		CACF5E9CC2C99A13A0318633 /* BaseTest.kt in Sources */ = {isa = PBXBuildFile; fileRef = 9D33D45C01BF6DA314EA46F3 /* BaseTest.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		D116E06620E87E6B7549BC71 /* PlayerCell.kt in Sources */ = {isa = PBXBuildFile; fileRef = FA771D3ED76BF390A124578E /* PlayerCell.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
+		F8091DFEBCB8181AF371B35B /* Schema.kt in Sources */ = {isa = PBXBuildFile; fileRef = 5B965798A5DA5A40A3B4FD6A /* Schema.kt */; settings = {COMPILER_FLAGS = "-w"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +54,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1214A5B3EA99C9B4EDBCAF3A /* Player.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = Player.kt; path = ../common/src/commonMain/kotlin/com/example/sqldelight/hockey/data/Player.kt; sourceTree = "<group>"; };
+		2C3819D199C0FC4BA31FAE2D /* Date.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = Date.kt; path = ../common/src/commonMain/kotlin/com/example/sqldelight/hockey/data/Date.kt; sourceTree = "<group>"; };
+		2D0BA21E98A7ED1058F1F651 /* Date.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = Date.kt; path = ../common/src/iosMain/kotlin/com/example/sqldelight/hockey/data/Date.kt; sourceTree = "<group>"; };
+		477E326934E3D6F71A36B711 /* Functions.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = Functions.kt; path = ../common/src/iosTest/kotlin/com/example/sqldelight/hockey/Functions.kt; sourceTree = "<group>"; };
+		59299AB6E5FD98C483DAB8F0 /* DateFormatHelper.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = DateFormatHelper.kt; path = ../common/src/jvmMain/kotlin/com/example/sqldelight/hockey/platform/DateFormatHelper.kt; sourceTree = "<group>"; };
+		5B965798A5DA5A40A3B4FD6A /* Schema.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = Schema.kt; path = ../common/src/commonMain/kotlin/com/example/sqldelight/hockey/data/Schema.kt; sourceTree = "<group>"; };
+		5DCB6FE37C44A410A92EE05E /* PlayerData.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = PlayerData.kt; path = ../common/src/iosMain/kotlin/com/example/sqldelight/hockey/ui/PlayerData.kt; sourceTree = "<group>"; };
+		622A36BA193416C6413A1025 /* DateFormatHelper.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = DateFormatHelper.kt; path = ../common/src/commonMain/kotlin/com/example/sqldelight/hockey/platform/DateFormatHelper.kt; sourceTree = "<group>"; };
 		631A1BED21F25EEE007EE0A7 /* PlayerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRow.swift; sourceTree = "<group>"; };
 		631A1BEF21F274F8007EE0A7 /* TeamRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRow.swift; sourceTree = "<group>"; };
 		631A1BF121F2758F007EE0A7 /* TeamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +73,18 @@
 		635661DE21F12B8000DD7240 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		635661E021F12B8000DD7240 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63E90CF521FEBBB700449E04 /* main.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = main.framework; path = "../common/build/xcode-frameworks/main.framework"; sourceTree = "<group>"; };
+		8870FF3D526ACC198706A64B /* SchemaTest.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = SchemaTest.kt; path = ../common/src/commonTest/kotlin/com/example/sqldelight/hockey/SchemaTest.kt; sourceTree = "<group>"; };
+		8A7E57FEC2057B55C5FD09BF /* Date.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = Date.kt; path = ../common/src/jvmMain/kotlin/com/example/sqldelight/hockey/data/Date.kt; sourceTree = "<group>"; };
+		938E3C26BCDA770AFC45C77E /* Db.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = Db.kt; path = ../common/src/jvmMain/kotlin/com/example/sqldelight/hockey/data/Db.kt; sourceTree = "<group>"; };
+		99FFC5352F52EEEB5D95F94F /* TeamCell.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = TeamCell.kt; path = ../common/src/iosMain/kotlin/com/example/sqldelight/hockey/ui/TeamCell.kt; sourceTree = "<group>"; };
+		9D33D45C01BF6DA314EA46F3 /* BaseTest.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = BaseTest.kt; path = ../common/src/commonTest/kotlin/com/example/sqldelight/hockey/BaseTest.kt; sourceTree = "<group>"; };
+		BCC0FA6E28AE76F5EB14DE33 /* DateFormatHelper.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = DateFormatHelper.kt; path = ../common/src/iosMain/kotlin/com/example/sqldelight/hockey/platform/DateFormatHelper.kt; sourceTree = "<group>"; };
+		BF3E0A657E5A7AA2D5160E8F /* TeamDataTest.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = TeamDataTest.kt; path = ../common/src/iosTest/kotlin/com/example/sqldelight/hockey/ui/TeamDataTest.kt; sourceTree = "<group>"; };
+		D367694199984226C5D028FF /* TeamData.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = TeamData.kt; path = ../common/src/iosMain/kotlin/com/example/sqldelight/hockey/ui/TeamData.kt; sourceTree = "<group>"; };
+		D7F0BC28402B8682DC40D272 /* DateFormatHelperTest.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = DateFormatHelperTest.kt; path = ../common/src/commonTest/kotlin/com/example/sqldelight/hockey/platform/DateFormatHelperTest.kt; sourceTree = "<group>"; };
+		EA8EABACE1448C8813022F7D /* Db.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = Db.kt; path = ../common/src/iosMain/kotlin/com/example/sqldelight/hockey/data/Db.kt; sourceTree = "<group>"; };
+		FA771D3ED76BF390A124578E /* PlayerCell.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = PlayerCell.kt; path = ../common/src/iosMain/kotlin/com/example/sqldelight/hockey/ui/PlayerCell.kt; sourceTree = "<group>"; };
+		FD1FCDF819714506374E4DFC /* Functions.kt */ = {isa = PBXFileReference; includeInIndex = 1; name = Functions.kt; path = ../common/src/jvmTest/kotlin/com/example/sqldelight/hockey/Functions.kt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +99,217 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		046C8DC2DEF8FBE2621A5F1E /* example */ = {
+			isa = PBXGroup;
+			children = (
+				A10E212C56B84810ED60D0DB /* sqldelight */,
+			);
+			name = example;
+			sourceTree = "<group>";
+		};
+		08D9DB1C86104AC6AD1824A7 /* iosTest */ = {
+			isa = PBXGroup;
+			children = (
+				0AE966D11FC5451BA0B3FF35 /* kotlin */,
+			);
+			name = iosTest;
+			sourceTree = "<group>";
+		};
+		0AE966D11FC5451BA0B3FF35 /* kotlin */ = {
+			isa = PBXGroup;
+			children = (
+				74B902F1B99613129CE89B3C /* com */,
+			);
+			name = kotlin;
+			sourceTree = "<group>";
+		};
+		0C37287639BF8B08F09DB8E3 /* example */ = {
+			isa = PBXGroup;
+			children = (
+				35CCF38802CC5B1E0FF7B22E /* sqldelight */,
+			);
+			name = example;
+			sourceTree = "<group>";
+		};
+		0C852F0DF6A85C4C966D744B /* data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = data;
+			sourceTree = "<group>";
+		};
+		14135F1A4AB3BE3625A1B3BB /* commonTest */ = {
+			isa = PBXGroup;
+			children = (
+				E41E03D0C55C5EAB456FB3C2 /* kotlin */,
+			);
+			name = commonTest;
+			sourceTree = "<group>";
+		};
+		176F851C71ED5E0BBA65A0EB /* sqldelight */ = {
+			isa = PBXGroup;
+			children = (
+				E4C544D3DE7F51F375C2B2C9 /* hockey */,
+			);
+			name = sqldelight;
+			sourceTree = "<group>";
+		};
+		18AAF975AD84F9DA89C3BA4D /* example */ = {
+			isa = PBXGroup;
+			children = (
+				217E7D1BD3D3300AD47C6F60 /* sqldelight */,
+			);
+			name = example;
+			sourceTree = "<group>";
+		};
+		1C828689FF270A0ADCDB6481 /* sqldelight */ = {
+			isa = PBXGroup;
+			children = (
+				C44C431370305DCB341D3A0C /* migrations */,
+				7D3A1BF88BB5BC8C7F5EC084 /* com */,
+			);
+			name = sqldelight;
+			sourceTree = "<group>";
+		};
+		1E10D23926134FAAAF44393A /* platform */ = {
+			isa = PBXGroup;
+			children = (
+				622A36BA193416C6413A1025 /* DateFormatHelper.kt */,
+			);
+			name = platform;
+			sourceTree = "<group>";
+		};
+		217E7D1BD3D3300AD47C6F60 /* sqldelight */ = {
+			isa = PBXGroup;
+			children = (
+				45905B6842A8EC82D25F52CB /* hockey */,
+			);
+			name = sqldelight;
+			sourceTree = "<group>";
+		};
+		2223B853143015FDDD620427 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				1C828689FF270A0ADCDB6481 /* sqldelight */,
+			);
+			name = main;
+			sourceTree = "<group>";
+		};
+		2F330A0D2DDD254BE9FECF93 /* sqldelight */ = {
+			isa = PBXGroup;
+			children = (
+				75C82602E4232EC02B87CF56 /* hockey */,
+			);
+			name = sqldelight;
+			sourceTree = "<group>";
+		};
+		31F9004AE3FF516B750E1958 /* jvmMain */ = {
+			isa = PBXGroup;
+			children = (
+				B6FBC3B038906E741E28B7C7 /* kotlin */,
+			);
+			name = jvmMain;
+			sourceTree = "<group>";
+		};
+		35CCF38802CC5B1E0FF7B22E /* sqldelight */ = {
+			isa = PBXGroup;
+			children = (
+				8D60C942894CBD1636DC6716 /* hockey */,
+			);
+			name = sqldelight;
+			sourceTree = "<group>";
+		};
+		36A30E19A2010F9ABC048E9C /* com */ = {
+			isa = PBXGroup;
+			children = (
+				EDCC929C0CDACACB0931E49F /* example */,
+			);
+			name = com;
+			sourceTree = "<group>";
+		};
+		38B2BA78B0CBAFCA8FAE652E /* com */ = {
+			isa = PBXGroup;
+			children = (
+				FB9D512A47E31EAA3EA54944 /* example */,
+			);
+			name = com;
+			sourceTree = "<group>";
+		};
+		3937BA0C0013E0476E6BA6A5 /* com */ = {
+			isa = PBXGroup;
+			children = (
+				0C37287639BF8B08F09DB8E3 /* example */,
+			);
+			name = com;
+			sourceTree = "<group>";
+		};
+		416A58BCDDBC5F311D190C04 /* hockey */ = {
+			isa = PBXGroup;
+			children = (
+				A521CCB00BDC02DD13F5CCB1 /* platform */,
+				4380578B78BD1078F99AA78B /* data */,
+			);
+			name = hockey;
+			sourceTree = "<group>";
+		};
+		4380578B78BD1078F99AA78B /* data */ = {
+			isa = PBXGroup;
+			children = (
+				8A7E57FEC2057B55C5FD09BF /* Date.kt */,
+				938E3C26BCDA770AFC45C77E /* Db.kt */,
+			);
+			name = data;
+			sourceTree = "<group>";
+		};
+		45905B6842A8EC82D25F52CB /* hockey */ = {
+			isa = PBXGroup;
+			children = (
+				FD1FCDF819714506374E4DFC /* Functions.kt */,
+			);
+			name = hockey;
+			sourceTree = "<group>";
+		};
+		4C6528065F1088F16E844B45 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				1214A5B3EA99C9B4EDBCAF3A /* Player.kt */,
+				2C3819D199C0FC4BA31FAE2D /* Date.kt */,
+				5B965798A5DA5A40A3B4FD6A /* Schema.kt */,
+			);
+			name = data;
+			sourceTree = "<group>";
+		};
+		4D6989B2189094A814910497 /* sqldelight */ = {
+			isa = PBXGroup;
+			children = (
+				8FB8A7E9C1656FEF8FBD17B0 /* hockey */,
+			);
+			name = sqldelight;
+			sourceTree = "<group>";
+		};
+		51ED1B95094242C62BE608B3 /* jvmTest */ = {
+			isa = PBXGroup;
+			children = (
+				D4B68631958E4E3AD9A7BCDE /* kotlin */,
+			);
+			name = jvmTest;
+			sourceTree = "<group>";
+		};
+		610489A22194581455AB3ADC /* kotlin */ = {
+			isa = PBXGroup;
+			children = (
+				7905497A1D80CB6F71E58382 /* com */,
+			);
+			name = kotlin;
+			sourceTree = "<group>";
+		};
 		635661C821F12B7D00DD7240 = {
 			isa = PBXGroup;
 			children = (
 				63E90CF521FEBBB700449E04 /* main.framework */,
 				635661D321F12B7E00DD7240 /* iosApp */,
 				635661D221F12B7E00DD7240 /* Products */,
+				7E3D7D18B2C8EAD13FD67C0C /* Kotlin */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +335,253 @@
 				631A1BF121F2758F007EE0A7 /* TeamsViewController.swift */,
 			);
 			path = iosApp;
+			sourceTree = "<group>";
+		};
+		74B902F1B99613129CE89B3C /* com */ = {
+			isa = PBXGroup;
+			children = (
+				046C8DC2DEF8FBE2621A5F1E /* example */,
+			);
+			name = com;
+			sourceTree = "<group>";
+		};
+		75C82602E4232EC02B87CF56 /* hockey */ = {
+			isa = PBXGroup;
+			children = (
+				AF98842C21BCE4493B3AEA15 /* ui */,
+				87AEA6E075C4458F1264774F /* platform */,
+				9EEF3B1BFCEB526EFFF51CB5 /* data */,
+			);
+			name = hockey;
+			sourceTree = "<group>";
+		};
+		7905497A1D80CB6F71E58382 /* com */ = {
+			isa = PBXGroup;
+			children = (
+				A9009CEF2E2EA577930A715A /* example */,
+			);
+			name = com;
+			sourceTree = "<group>";
+		};
+		7B2BAA68EDC206C871EAEDEC /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				BF3E0A657E5A7AA2D5160E8F /* TeamDataTest.kt */,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
+		7D3A1BF88BB5BC8C7F5EC084 /* com */ = {
+			isa = PBXGroup;
+			children = (
+				9E66DFE90E65AE4CC8A485B4 /* example */,
+			);
+			name = com;
+			sourceTree = "<group>";
+		};
+		7D7E00BEC86448C9F5BF65D1 /* iosMain */ = {
+			isa = PBXGroup;
+			children = (
+				610489A22194581455AB3ADC /* kotlin */,
+			);
+			name = iosMain;
+			sourceTree = "<group>";
+		};
+		7E3D7D18B2C8EAD13FD67C0C /* Kotlin */ = {
+			isa = PBXGroup;
+			children = (
+				7D7E00BEC86448C9F5BF65D1 /* iosMain */,
+				51ED1B95094242C62BE608B3 /* jvmTest */,
+				95BA64E5A118D1018BBF2671 /* commonMain */,
+				14135F1A4AB3BE3625A1B3BB /* commonTest */,
+				31F9004AE3FF516B750E1958 /* jvmMain */,
+				08D9DB1C86104AC6AD1824A7 /* iosTest */,
+				2223B853143015FDDD620427 /* main */,
+			);
+			name = Kotlin;
+			sourceTree = "<group>";
+		};
+		87AEA6E075C4458F1264774F /* platform */ = {
+			isa = PBXGroup;
+			children = (
+				BCC0FA6E28AE76F5EB14DE33 /* DateFormatHelper.kt */,
+			);
+			name = platform;
+			sourceTree = "<group>";
+		};
+		8D60C942894CBD1636DC6716 /* hockey */ = {
+			isa = PBXGroup;
+			children = (
+				1E10D23926134FAAAF44393A /* platform */,
+				4C6528065F1088F16E844B45 /* data */,
+			);
+			name = hockey;
+			sourceTree = "<group>";
+		};
+		8FB8A7E9C1656FEF8FBD17B0 /* hockey */ = {
+			isa = PBXGroup;
+			children = (
+				F1AA97D603B9708211593037 /* platform */,
+				9D33D45C01BF6DA314EA46F3 /* BaseTest.kt */,
+				8870FF3D526ACC198706A64B /* SchemaTest.kt */,
+			);
+			name = hockey;
+			sourceTree = "<group>";
+		};
+		91A388203A78B18691E4D259 /* com */ = {
+			isa = PBXGroup;
+			children = (
+				18AAF975AD84F9DA89C3BA4D /* example */,
+			);
+			name = com;
+			sourceTree = "<group>";
+		};
+		95BA64E5A118D1018BBF2671 /* commonMain */ = {
+			isa = PBXGroup;
+			children = (
+				EE33604F888F9A9A6A171FBC /* kotlin */,
+			);
+			name = commonMain;
+			sourceTree = "<group>";
+		};
+		9E61F83CA350F3A8934AEE1F /* hockey */ = {
+			isa = PBXGroup;
+			children = (
+				7B2BAA68EDC206C871EAEDEC /* ui */,
+				477E326934E3D6F71A36B711 /* Functions.kt */,
+			);
+			name = hockey;
+			sourceTree = "<group>";
+		};
+		9E66DFE90E65AE4CC8A485B4 /* example */ = {
+			isa = PBXGroup;
+			children = (
+				176F851C71ED5E0BBA65A0EB /* sqldelight */,
+			);
+			name = example;
+			sourceTree = "<group>";
+		};
+		9EEF3B1BFCEB526EFFF51CB5 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				2D0BA21E98A7ED1058F1F651 /* Date.kt */,
+				EA8EABACE1448C8813022F7D /* Db.kt */,
+			);
+			name = data;
+			sourceTree = "<group>";
+		};
+		A10E212C56B84810ED60D0DB /* sqldelight */ = {
+			isa = PBXGroup;
+			children = (
+				9E61F83CA350F3A8934AEE1F /* hockey */,
+			);
+			name = sqldelight;
+			sourceTree = "<group>";
+		};
+		A521CCB00BDC02DD13F5CCB1 /* platform */ = {
+			isa = PBXGroup;
+			children = (
+				59299AB6E5FD98C483DAB8F0 /* DateFormatHelper.kt */,
+			);
+			name = platform;
+			sourceTree = "<group>";
+		};
+		A9009CEF2E2EA577930A715A /* example */ = {
+			isa = PBXGroup;
+			children = (
+				2F330A0D2DDD254BE9FECF93 /* sqldelight */,
+			);
+			name = example;
+			sourceTree = "<group>";
+		};
+		AF98842C21BCE4493B3AEA15 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				FA771D3ED76BF390A124578E /* PlayerCell.kt */,
+				99FFC5352F52EEEB5D95F94F /* TeamCell.kt */,
+				5DCB6FE37C44A410A92EE05E /* PlayerData.kt */,
+				D367694199984226C5D028FF /* TeamData.kt */,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
+		B6FBC3B038906E741E28B7C7 /* kotlin */ = {
+			isa = PBXGroup;
+			children = (
+				38B2BA78B0CBAFCA8FAE652E /* com */,
+			);
+			name = kotlin;
+			sourceTree = "<group>";
+		};
+		C44C431370305DCB341D3A0C /* migrations */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = migrations;
+			sourceTree = "<group>";
+		};
+		D4B68631958E4E3AD9A7BCDE /* kotlin */ = {
+			isa = PBXGroup;
+			children = (
+				91A388203A78B18691E4D259 /* com */,
+			);
+			name = kotlin;
+			sourceTree = "<group>";
+		};
+		D723131AA1E16F233FFE39A7 /* sqldelight */ = {
+			isa = PBXGroup;
+			children = (
+				416A58BCDDBC5F311D190C04 /* hockey */,
+			);
+			name = sqldelight;
+			sourceTree = "<group>";
+		};
+		E41E03D0C55C5EAB456FB3C2 /* kotlin */ = {
+			isa = PBXGroup;
+			children = (
+				36A30E19A2010F9ABC048E9C /* com */,
+			);
+			name = kotlin;
+			sourceTree = "<group>";
+		};
+		E4C544D3DE7F51F375C2B2C9 /* hockey */ = {
+			isa = PBXGroup;
+			children = (
+				0C852F0DF6A85C4C966D744B /* data */,
+			);
+			name = hockey;
+			sourceTree = "<group>";
+		};
+		EDCC929C0CDACACB0931E49F /* example */ = {
+			isa = PBXGroup;
+			children = (
+				4D6989B2189094A814910497 /* sqldelight */,
+			);
+			name = example;
+			sourceTree = "<group>";
+		};
+		EE33604F888F9A9A6A171FBC /* kotlin */ = {
+			isa = PBXGroup;
+			children = (
+				3937BA0C0013E0476E6BA6A5 /* com */,
+			);
+			name = kotlin;
+			sourceTree = "<group>";
+		};
+		F1AA97D603B9708211593037 /* platform */ = {
+			isa = PBXGroup;
+			children = (
+				D7F0BC28402B8682DC40D272 /* DateFormatHelperTest.kt */,
+			);
+			name = platform;
+			sourceTree = "<group>";
+		};
+		FB9D512A47E31EAA3EA54944 /* example */ = {
+			isa = PBXGroup;
+			children = (
+				D723131AA1E16F233FFE39A7 /* sqldelight */,
+			);
+			name = example;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +682,26 @@
 				635661D521F12B7E00DD7240 /* AppDelegate.swift in Sources */,
 				631A1BF021F274F8007EE0A7 /* TeamRow.swift in Sources */,
 				6327E1DA21F250E1004105E9 /* PlayersViewController.swift in Sources */,
+				D116E06620E87E6B7549BC71 /* PlayerCell.kt in Sources */,
+				53A4BC3FBFCB9EA843F34A30 /* TeamCell.kt in Sources */,
+				831266C720CE28999E562840 /* PlayerData.kt in Sources */,
+				A42FC9307BE595BF5F0CB59C /* TeamData.kt in Sources */,
+				A7814333C7F9172554A282F3 /* DateFormatHelper.kt in Sources */,
+				2869EF7651D5B2152E653826 /* Date.kt in Sources */,
+				A9212FA144ED8140713324C2 /* Db.kt in Sources */,
+				A85D4398384118ACB0557930 /* Functions.kt in Sources */,
+				399F692A98931BC916334BF4 /* DateFormatHelper.kt in Sources */,
+				C3AFCDF0EB7C2C03BFDA4765 /* Player.kt in Sources */,
+				9D7A25C6DAAC6D0DCF1950B1 /* Date.kt in Sources */,
+				F8091DFEBCB8181AF371B35B /* Schema.kt in Sources */,
+				BCF72DFE489A54E4C71D1791 /* DateFormatHelperTest.kt in Sources */,
+				CACF5E9CC2C99A13A0318633 /* BaseTest.kt in Sources */,
+				0CEB9527481BDD1B331D26DF /* SchemaTest.kt in Sources */,
+				0D56920D09643FB712D48596 /* DateFormatHelper.kt in Sources */,
+				BD738EEDB2556BD1A6729A0F /* Date.kt in Sources */,
+				18D6B59125B98B89D1176973 /* Db.kt in Sources */,
+				6908E9BF7CD2E3668BAFE108 /* TeamDataTest.kt in Sources */,
+				A80900DE2CEF0C0E431408FE /* Functions.kt in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

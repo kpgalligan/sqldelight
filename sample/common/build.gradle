@@ -1,5 +1,6 @@
 apply plugin: 'org.jetbrains.kotlin.multiplatform'
 apply plugin: 'com.squareup.sqldelight'
+apply plugin: 'co.touchlab.kotlinxcodesync'
 
 archivesBaseName = 'sample-common'
 
@@ -8,6 +9,10 @@ sqldelight {
   className = "HockeyDb"
 }
 
+xcode {
+  projectPath = "../iosApp/iosApp.xcodeproj"
+  target = "iosApp"
+}
 
 // TODO work around for https://youtrack.jetbrains.com/issue/KT-27170
 configurations {
