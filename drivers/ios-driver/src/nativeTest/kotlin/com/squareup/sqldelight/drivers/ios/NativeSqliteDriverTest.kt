@@ -369,7 +369,7 @@ abstract class NativeSqliteDriverTest : LazyDriverBaseTest() {
     assertEquals(1, driver.transactionPool.entry.statementCache.size)
 
     val statement =
-        driver.transactionPool.entry.statementCache.internalGetEntries().iterator().next().value
+        driver.transactionPool.entry.statementCache.testAccessEntries.iterator().next().value
 
     transacter.transaction {
       driver.execute(1, "insert into test(id, value)values(?, ?)", 2) {
@@ -382,7 +382,7 @@ abstract class NativeSqliteDriverTest : LazyDriverBaseTest() {
     assertEquals(1, driver.transactionPool.entry.statementCache.size)
 
     assertSame(
-        driver.transactionPool.entry.statementCache.internalGetEntries().iterator().next().value,
+        driver.transactionPool.entry.statementCache.testAccessEntries.iterator().next().value,
         statement)
   }
 
