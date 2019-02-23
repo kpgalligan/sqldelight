@@ -6,9 +6,7 @@ import co.touchlab.sqliter.DatabaseConnection
 import co.touchlab.sqliter.DatabaseManager
 import co.touchlab.sqliter.Statement
 import co.touchlab.sqliter.createDatabaseManager
-import co.touchlab.stately.collections.SharedHashMap
 import co.touchlab.stately.collections.SharedLinkedList
-import co.touchlab.stately.collections.frozenHashMap
 import co.touchlab.stately.collections.frozenLinkedList
 import co.touchlab.stately.concurrency.AtomicReference
 import co.touchlab.stately.concurrency.ThreadLocalRef
@@ -18,6 +16,7 @@ import com.squareup.sqldelight.Transacter
 import com.squareup.sqldelight.db.SqlCursor
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.db.SqlPreparedStatement
+import com.squareup.sqldelight.drivers.ios.util.LinearCache
 import com.squareup.sqldelight.drivers.ios.util.cleanUp
 
 sealed class ConnectionWrapper : SqlDriver {
@@ -245,7 +244,7 @@ internal class ThreadConnection(
   internal val cursorCollection = frozenLinkedList<Cursor>() as SharedLinkedList<Cursor>
 
   // This could probably be a list, assuming the id int is starting at zero/one and incremental.
-  internal val statementCache = frozenHashMap<Int, Statement>() as SharedHashMap<Int, Statement>
+  internal val statementCache = LinearCache<Statement>()
 
   fun safePut(identifier: Int?, statement: Statement) {
     if (!inUseStatements.remove(statement)) {
@@ -306,7 +305,7 @@ internal class ThreadConnection(
       it.statement.finalizeStatement()
     }
     statementCache.cleanUp {
-      it.value.finalizeStatement()
+      it.finalizeStatement()
     }
   }
 
