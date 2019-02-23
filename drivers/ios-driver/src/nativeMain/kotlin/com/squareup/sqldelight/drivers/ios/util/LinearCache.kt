@@ -75,7 +75,11 @@ internal class LinearCache<T>() {
 
     if (e2.size <= index) {
       if (entries.compareAndSet(e2, null)) {
-        val newArray = Array<AtomicReference<T?>>(e2.size + CACHE_INCREMENT_SIZE) {
+        var newSize = e2.size
+        while (newSize <= index){
+          newSize += CACHE_INCREMENT_SIZE
+        }
+        val newArray = Array<AtomicReference<T?>>(newSize) {
           if (it < e2.size) {
             e2[it]
           } else {
