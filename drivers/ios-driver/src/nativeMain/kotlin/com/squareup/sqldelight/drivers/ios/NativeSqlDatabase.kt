@@ -1,13 +1,7 @@
 package com.squareup.sqldelight.drivers.ios
 
-import co.touchlab.sqliter.Cursor
-import co.touchlab.sqliter.DatabaseConfiguration
-import co.touchlab.sqliter.DatabaseConnection
-import co.touchlab.sqliter.DatabaseManager
-import co.touchlab.sqliter.Statement
-import co.touchlab.sqliter.createDatabaseManager
+import co.touchlab.sqliter.*
 import co.touchlab.stately.collections.SharedLinkedList
-import co.touchlab.stately.collections.frozenLinkedList
 import co.touchlab.stately.concurrency.AtomicReference
 import co.touchlab.stately.concurrency.ThreadLocalRef
 import co.touchlab.stately.concurrency.value
@@ -16,46 +10,48 @@ import com.squareup.sqldelight.Transacter
 import com.squareup.sqldelight.db.SqlCursor
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.db.SqlPreparedStatement
-import com.squareup.sqldelight.drivers.ios.util.LinearCache
+import com.squareup.sqldelight.drivers.ios.util.LRUStatementCache
+import com.squareup.sqldelight.drivers.ios.util.StatementCache
+import com.squareup.sqldelight.drivers.ios.util.WeakLocalStatementCache
 import com.squareup.sqldelight.drivers.ios.util.cleanUp
 
 sealed class ConnectionWrapper : SqlDriver {
   internal abstract fun <R> accessConnection(
-    block: ThreadConnection.() -> R
+      block: ThreadConnection.() -> R
   ): R
 
   final override fun execute(
-    identifier: Int?,
-    sql: String,
-    parameters: Int,
-    binders: (SqlPreparedStatement.() -> Unit)?
+      identifier: Int?,
+      sql: String,
+      parameters: Int,
+      binders: (SqlPreparedStatement.() -> Unit)?
   ) {
     accessConnection {
-      val statement = getStatement(identifier, sql)
-      if (binders != null) {
-        try {
-          SqliterStatement(statement).binders()
-        } catch (t: Throwable) {
-          statement.resetStatement()
-          safePut(identifier, statement)
-          throw t
+      accessStatement(identifier, sql) { statement ->
+        if (binders != null) {
+          try {
+            SqliterStatement(statement).binders()
+          } catch (t: Throwable) {
+            statement.resetStatement()
+            safePut(identifier, statement)
+            throw t
+          }
         }
-      }
 
-      statement.execute()
-      statement.resetStatement()
-      safePut(identifier, statement)
+        statement.execute()
+        statement.resetStatement()
+      }
     }
   }
 
   final override fun executeQuery(
-    identifier: Int?,
-    sql: String,
-    parameters: Int,
-    binders: (SqlPreparedStatement.() -> Unit)?
-  ) : SqlCursor {
+      identifier: Int?,
+      sql: String,
+      parameters: Int,
+      binders: (SqlPreparedStatement.() -> Unit)?
+  ): SqlCursor {
     return accessConnection {
-      val statement = getStatement(identifier, sql)
+      val statement = pullStatement(identifier, sql)
 
       if (binders != null) {
         try {
@@ -103,19 +99,19 @@ sealed class ConnectionWrapper : SqlDriver {
  * when execute or executeQuery is called. This avoids race conditions with bind calls.
  */
 class NativeSqliteDriver(
-  private val databaseManager: DatabaseManager
+    private val databaseManager: DatabaseManager
 ) : ConnectionWrapper(),
     SqlDriver {
 
   constructor(
-    configuration: DatabaseConfiguration
+      configuration: DatabaseConfiguration
   ) : this(
       databaseManager = createDatabaseManager(configuration)
   )
 
   constructor(
-    schema: SqlDriver.Schema,
-    name: String
+      schema: SqlDriver.Schema,
+      name: String
   ) : this(
       configuration = DatabaseConfiguration(
           name = name,
@@ -195,8 +191,8 @@ class NativeSqliteDriver(
  * a wrap call, it will no longer be viable.
  */
 fun wrapConnection(
-  connection: DatabaseConnection,
-  block: (SqlDriver) -> Unit
+    connection: DatabaseConnection,
+    block: (SqlDriver) -> Unit
 ) {
   val conn = SqliterWrappedConnection(ThreadConnection(connection, null))
   try {
@@ -211,7 +207,7 @@ fun wrapConnection(
  * don't want the polling.
  */
 internal class SqliterWrappedConnection(
-  private val threadConnection: ThreadConnection
+    private val threadConnection: ThreadConnection
 ) : ConnectionWrapper(),
     SqlDriver {
   override fun currentTransaction(): Transacter.Transaction? = threadConnection.transaction.value
@@ -219,7 +215,7 @@ internal class SqliterWrappedConnection(
   override fun newTransaction(): Transacter.Transaction = threadConnection.newTransaction()
 
   override fun <R> accessConnection(
-    block: ThreadConnection.() -> R
+      block: ThreadConnection.() -> R
   ): R = threadConnection.block()
 
   override fun close() {
@@ -235,16 +231,15 @@ internal class SqliterWrappedConnection(
  * properly in cases where the user does not.
  */
 internal class ThreadConnection(
-  private val connection: DatabaseConnection,
-  private val borrowedConnectionThread: ThreadLocalRef<SinglePool<ThreadConnection>.Borrowed>?
+    private val connection: DatabaseConnection,
+    private val borrowedConnectionThread: ThreadLocalRef<SinglePool<ThreadConnection>.Borrowed>?
 ) {
-  private val inUseStatements = frozenLinkedList<Statement>() as SharedLinkedList<Statement>
+  private val inUseStatements = SharedLinkedList<Statement>(5)
 
   internal val transaction: AtomicReference<Transacter.Transaction?> = AtomicReference(null)
-  internal val cursorCollection = frozenLinkedList<Cursor>() as SharedLinkedList<Cursor>
+  internal val cursorCollection = SharedLinkedList<Cursor>(20)
 
-  // This could probably be a list, assuming the id int is starting at zero/one and incremental.
-  internal val statementCache = LinearCache<Statement>()
+  internal val statementCache:StatementCache = LRUStatementCache()//WeakLocalStatementCache(LRUStatementCache())
 
   fun safePut(identifier: Int?, statement: Statement) {
     if (!inUseStatements.remove(statement)) {
@@ -259,10 +254,32 @@ internal class ThreadConnection(
     removed?.finalizeStatement()
   }
 
-  fun getStatement(identifier: Int?, sql: String): Statement {
+  fun pullStatement(identifier: Int?, sql: String): Statement {
     val statement = removeCreateStatement(identifier, sql)
     inUseStatements.add(statement)
     return statement
+  }
+
+  inline fun accessStatement(identifier: Int?, sql: String, block: (Statement) -> Unit) {
+    if (identifier != null) {
+      val cached = statementCache.get(identifier)
+      val statement = if (cached != null)
+        cached
+      else {
+        val statement = connection.createStatement(sql)
+        statementCache.put(identifier, statement)
+        statement
+      }
+
+      block(statement)
+    } else {
+      val statement = connection.createStatement(sql)
+      try {
+        block(statement)
+      } finally {
+        statement.finalizeStatement()
+      }
+    }
   }
 
   /**
@@ -304,9 +321,7 @@ internal class ThreadConnection(
     cursorCollection.cleanUp {
       it.statement.finalizeStatement()
     }
-    statementCache.cleanUp {
-      it.finalizeStatement()
-    }
+    statementCache.cleanUp()
   }
 
   internal fun close() {
@@ -315,7 +330,7 @@ internal class ThreadConnection(
   }
 
   private inner class Transaction(
-    override val enclosingTransaction: Transacter.Transaction?
+      override val enclosingTransaction: Transacter.Transaction?
   ) : Transacter.Transaction() {
     override fun endTransaction(successful: Boolean) {
       //This stays here to avoid a race condition with multiple threads and transactions
