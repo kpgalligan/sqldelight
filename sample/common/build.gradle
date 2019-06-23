@@ -47,9 +47,11 @@ kotlin {
                               ? presets.iosArm64 : presets.iosX64
 
     fromPreset(iOSTarget, 'ios') {
-      compilations.main.outputKinds('FRAMEWORK')
+        binaries {
+            framework()
+        }
       compilations.each {
-        it.extraOpts("-linkerOpts", "-lsqlite3")
+        it.linkerOpts("-linkerOpts", "-lsqlite3")
       }
     }
   }
