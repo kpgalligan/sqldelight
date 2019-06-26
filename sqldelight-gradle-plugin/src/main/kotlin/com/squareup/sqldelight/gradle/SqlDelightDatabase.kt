@@ -33,16 +33,16 @@ class SqlDelightDatabase(
   }
 
   fun dependency(dependencyProject: Project) {
-    dependencyProject.afterEvaluate {
-      val dependency = dependencyProject.extensions.findByType(SqlDelightExtension::class.java)
-          ?: throw IllegalStateException("Cannot depend on a module with no sqldelight plugin.")
-      val database = dependency.databases.singleOrNull { it.name == name }
-          ?: throw IllegalStateException("No database named $name in $dependencyProject")
-      if (database.packageName == packageName) {
-        throw IllegalStateException("Detected a schema that already has the package name $packageName in project $dependencyProject")
-      }
-      dependencies.add(database)
+    project.evaluationDependsOn(dependencyProject.path)
+
+    val dependency = dependencyProject.extensions.findByType(SqlDelightExtension::class.java)
+        ?: throw IllegalStateException("Cannot depend on a module with no sqldelight plugin.")
+    val database = dependency.databases.singleOrNull { it.name == name }
+        ?: throw IllegalStateException("No database named $name in $dependencyProject")
+    if (database.packageName == packageName) {
+      throw IllegalStateException("Detected a schema that already has the package name $packageName in project $dependencyProject")
     }
+    dependencies.add(database)
   }
 
   internal fun getProperties(): SqlDelightDatabaseProperties {
@@ -134,7 +134,6 @@ class SqlDelightDatabase(
   ) {
     val verifyMigrationTask =
         project.tasks.register("verify${source.name.capitalize()}${name}Migration", VerifyMigrationTask::class.java) {
-          it.properties = getProperties()
           it.sourceFolders = sourceSet
           it.source(sourceSet)
           it.include("**${File.separatorChar}*.${SqlDelightFileType.defaultExtension}")
@@ -145,7 +144,6 @@ class SqlDelightDatabase(
 
     if (schemaOutputDirectory != null) {
       project.tasks.register("generate${source.name.capitalize()}${name}Schema", GenerateSchemaTask::class.java) {
-        it.properties = getProperties()
         it.sourceFolders = sourceSet
         it.outputDirectory = schemaOutputDirectory
         it.source(sourceSet)
