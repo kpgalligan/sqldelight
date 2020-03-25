@@ -81,7 +81,7 @@ kotlin {
     compilations.main.source(sourceSets.nativeMain)
     compilations.test.source(sourceSets.nativeTest)
     compilations.test {
-      extraOpts("-linker-options", "-lsqlite3")
+      kotlinOptions.freeCompilerArgs += ["-linker-options", "-lsqlite3"]
     }
   }
 }
